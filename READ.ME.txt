@@ -1,0 +1,65 @@
+Game Clustering and Analysis Project
+This project involves clustering and analyzing video game data for various insights, including genre distributions, owner categories, and gameplay features. The workflow includes data preprocessing, feature engineering, clustering with K-means, and visualizing the results.
+Prerequisites
+1. Software:
+o R version 4.0 or above.
+o RStudio (optional but recommended).
+2. Packages: Ensure the following R packages are installed:
+o dplyr, tidyr, stringr, caTools, caret, lightgbm, ggplot2, data.table, cluster, factoextra, scales, mclust, gridExtra
+Install missing packages using:
+install.packages(c("dplyr", "tidyr", "stringr", "caTools", "caret", "lightgbm", "ggplot2", "data.table", "cluster", "factoextra", "scales", "mclust", "gridExtra"))
+3. Input Files:
+o Cleaned_new_games.csv - Preprocessed game data.
+o Cleaned_games_pt4.csv - Intermediate data used for clustering.
+Files and Outputs
+* Primary Script: Cleaned_games.pt2.R
+* Generated Outputs: 
+o Cleaned_games_pt3.csv: Intermediate preprocessed data.
+o app_data.rds: Clustered data for further use.
+o cluster_model.rds: K-means clustering model metadata.
+How to Run the Code
+Step 1: Data Preparation
+1. Load Cleaned_new_games.csv into the script. Update the file path in the line:
+2. new_games <- read.csv("Final Project Data/Cleaned_new_games.csv")  # Update this path
+3. Run the preprocessing and feature engineering sections to:
+o Drop irrelevant columns.
+o Engineer new features (e.g., age_rating, owner_category).
+o Create binary indicators for gameplay modes and genres.
+4. Save intermediate results:
+5. write.csv(new_games, "Cleaned_games_pt3.csv", row.names = FALSE)
+Step 2: Clustering
+1. Ensure Cleaned_games_pt4.csv is available and update the path in:
+2. new_games_model <- read.csv("Final Project Data/Cleaned_games_pt4.csv")
+3. Run the clustering script to:
+o Normalize and scale features.
+o Perform K-means clustering with 5 clusters.
+4. Save the clustering results:
+5. saveRDS(final_app_data, "app_data.rds")
+6. saveRDS(model_export, "cluster_model.rds")
+Step 3: Visualizations
+1. Generate distribution and heatmap plots for:
+o Cluster characteristics.
+o Genre distribution.
+o Age ratings.
+o Ownership categories.
+2. Example plots include:
+o Bar charts of age group distributions.
+o Heatmap for feature distributions across clusters.
+Step 4: Export and Metrics
+1. View clustering metrics, such as explained variance and sum of squares:
+2. print("Explained Variance Ratio:", round(cluster_metrics$explained_var, 4))
+3. Export important metrics or visualization plots as needed.
+Key Outputs and Insights
+1. Cluster Assignments:
+o Each game is assigned to one of five clusters.
+2. Visualizations:
+o Distribution plots for multi-player vs. single-player games.
+o Heatmap of genre frequencies across clusters.
+3. Metrics:
+o Explained variance ratio: ~48.39%.
+Reproducing Results
+1. Download and load the Cleaned_new_games.csv dataset.
+2. Follow steps 1 to 4 sequentially.
+3. Ensure consistent random seeds (set.seed(123)) for reproducibility.
+Contact
+For questions or issues, please contact sleimel@chapman.edu
